@@ -22,20 +22,7 @@ while True:
 
     incoming = client.recv(500)  # получение данных от клиента
     
-    # составление и отправка простейшего HTTP-ответа
-    content = """<!doctype html>
-<html lang=en>
-<head>
-<meta charset=utf-8>
-<title>blah</title>
-</head>
-<body>
-<p>Съешь этих мягких французских булок, да выпей чаю</p>
-</body>
-</html>
-"""
-    client.send(f"""HTTP/1.1 200 OK
-Content-Length: {len(content.encode())}
-Content-Type: text/html; charset=utf-8\r\n\r\n{content}
-""".encode())  # через соединения передаются b"", поэтому обычные питоновские строки надо .encode()
+    content = ''
+    
+    client.send(content)
     client.close()  # это сигналит клиенту, что данные все отправлены; иначе "вечная загрузка"
